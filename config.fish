@@ -12,6 +12,21 @@ alias gs="git status"
 alias ..="cd .."
 alias ...="cd ../.."
 alias grep="grep --color=auto"  # Enable colored output in grep
+alias cc="clear"
+alias web="cd $HOME/nexus/nexus.web"
+alias oweb="cd $HOME/nexus/nexus.web && nvim"
+alias rweb="web && npm run dev"
+alias auth="cd $HOME/nexus/Nexus.Auth/Nexus.Auth"
+alias oauth="cd $HOME/nexus/Nexus.Auth/Nexus.Auth && nvim"
+alias posts="cd $HOME/nexus/Nexus.Posts/Nexus.Posts"
+alias oposts="cd $HOME/nexus/Nexus.Posts/Nexus.Posts && nvim"
+alias db="dotnet build -c Debug"
+alias cfish="cd ~/.config/fish"
+alias ci3="cd ~/.config/i3"
+alias cnvim="cd ~/.config/nvim/lua/plugins"
+alias ofish="nvim ~/.config/fish/config.fish"
+alias oi3="nvim ~/.config/i3/config"
+alias onvim="nvim ~/.config/nvim/lua/plugins"
 
 # Enable syntax highlighting (default in Fish)
 set -g fish_color_command yellow
@@ -27,6 +42,18 @@ abbr -a gp "git push"
 function mkcd
     # Make a directory and move into it
     mkdir -p $argv; cd $argv
+end
+
+function rauth
+    auth;
+    dotnet build -c Debug;
+    dotnet run $HOME/nexus/Nexus.Auth/Nexus.Auth/bin/Debug/net8.0/Nexus.Auth;
+end
+
+function rposts
+    posts;
+    dotnet build -c Debug;
+    dotnet run $HOME/nexus/Nexus.Posts/Nexus.Posts/bin/Debug/net8.0/Nexus.Posts;
 end
 
 # Key bindings (e.g., Ctrl+r for history search)
@@ -50,61 +77,3 @@ set -Ux fish_user_paths $fish_user_paths /opt/nvim-linux64/bin
 # Dotnet root
 set -Ux fish_user_paths $fish_user_paths $HOME/.dotnet
 set -x DOTNET_ROOT $HOME/.dotnet
-
-# Shortcuts for nexus project navigation, build, execution
-function web
-    cd $HOME/nexus/nexus.web
-end
-
-function oweb
-    cd $HOME/nexus/nexus.web
-    nvim
-end
-
-function rweb
-    npm run dev
-end
-
-function auth
-    cd $HOME/nexus/Nexus.Auth/Nexus.Auth
-end
-
-function oauth
-    cd $HOME/nexus/Nexus.Auth/Nexus.Auth
-    nvim
-end
-
-function rauth
-    dotnet build -c Debug && dotnet run $HOME/nexus/Nexus.Auth/Nexus.Auth/bin/Debug/net8.0/Nexus.Auth
-end
-
-function posts
-    cd $HOME/nexus/Nexus.Posts/Nexus.Posts
-end
-
-function oauth
-    cd $HOME/nexus/Nexus.Posts/Nexus.Posts
-    nvim
-end
-
-function rposts
-    dotnet build -c Debug && dotnet run $HOME/nexus/Nexus.Posts/Nexus.Posts/bin/Debug/net8.0/Nexus.Posts
-end
-
-# Shortcut to open configs
-function cfish
-    nvim ~/.config/fish/config.fish
-end
-
-function cnvim
-    nvim ~/.config/nvim/lua/plugins
-end
-
-function ci3
-    nvim ~/.config/i3/config
-end
-
-#Shortcut key to clear terminal
-function cc
-    clear
-end
