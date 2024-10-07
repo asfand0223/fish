@@ -61,8 +61,6 @@ function oweb
     nvim
 end
 
-function 
-
 function rweb
     npm run dev
 end
