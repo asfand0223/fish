@@ -103,3 +103,8 @@ end
 function ci3
     nvim ~/.config/i3/config
 end
+
+#Shortcut key to clear terminal
+function cc
+    clear
+end
