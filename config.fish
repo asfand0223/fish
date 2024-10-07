@@ -33,6 +33,7 @@ set -g fish_color_command yellow
 set -g fish_color_param cyan
 
 # Enable abbreviations (like smart aliases)
+abbr -a ga "git add ."
 abbr -a gco "git checkout"
 abbr -a gc "git commit -m"
 abbr -a gl "git pull"
