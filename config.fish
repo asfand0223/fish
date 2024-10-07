@@ -44,7 +44,64 @@ for file in ~/.config/fish/functions/*.fish
 end
 
 #Paths
-# Neovim path
+# Neovim
 set -Ux fish_user_paths $fish_user_paths /opt/nvim-linux64/bin
+
+# Dotnet root
 set -Ux fish_user_paths $fish_user_paths $HOME/.dotnet
 set -x DOTNET_ROOT $HOME/.dotnet
+
+# Shortcuts for nexus project navigation, build, execution
+function web
+    cd $HOME/nexus/nexus.web
+end
+
+function oweb
+    cd $HOME/nexus/nexus.web
+    nvim
+end
+
+function 
+
+function rweb
+    npm run dev
+end
+
+function auth
+    cd $HOME/nexus/Nexus.Auth/Nexus.Auth
+end
+
+function oauth
+    cd $HOME/nexus/Nexus.Auth/Nexus.Auth
+    nvim
+end
+
+function rauth
+    dotnet build -c Debug && dotnet run $HOME/nexus/Nexus.Auth/Nexus.Auth/bin/Debug/net8.0/Nexus.Auth
+end
+
+function posts
+    cd $HOME/nexus/Nexus.Posts/Nexus.Posts
+end
+
+function oauth
+    cd $HOME/nexus/Nexus.Posts/Nexus.Posts
+    nvim
+end
+
+function rposts
+    dotnet build -c Debug && dotnet run $HOME/nexus/Nexus.Posts/Nexus.Posts/bin/Debug/net8.0/Nexus.Posts
+end
+
+# Shortcut to open configs
+function cfish
+    nvim ~/.config/fish/config.fish
+end
+
+function cnvim
+    nvim ~/.config/nvim/lua/plugins
+end
+
+function ci3
+    nvim ~/.config/i3/config
+end
