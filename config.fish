@@ -13,19 +13,23 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias grep="grep --color=auto"  # Enable colored output in grep
 alias cc="clear"
-alias web="cd $HOME/nexus/nexus.web"
-alias oweb="cd $HOME/nexus/nexus.web && nvim"
+alias web="cd ~/nexus/nexus.web"
+alias oweb="cd ~/nexus/nexus.web && nvim"
 alias rweb="web && npm run dev"
-alias auth="cd $HOME/nexus/Nexus.Auth/Nexus.Auth"
-alias oauth="cd $HOME/nexus/Nexus.Auth/Nexus.Auth && nvim"
-alias posts="cd $HOME/nexus/Nexus.Posts/Nexus.Posts"
-alias oposts="cd $HOME/nexus/Nexus.Posts/Nexus.Posts && nvim"
+alias auth="cd ~/nexus/Nexus.Auth/Nexus.Auth"
+alias oauth="cd ~/nexus/Nexus.Auth/Nexus.Auth && nvim"
+alias posts="cd ~/nexus/Nexus.Posts/Nexus.Posts"
+alias oposts="cd ~/nexus/Nexus.Posts/Nexus.Posts && nvim"
+alias server="cd ~/tcp_chat/server"
+alias oserver="nvim ~/tcp_chat/server"
+alias client="cd ~/tcp_chat/client"
+alias oclient="nvim ~/tcp_chat/client"
 alias db="dotnet build -c Debug"
 alias cfish="cd ~/.config/fish"
-alias ci3="cd ~/.config/i3"
-alias cnvim="cd ~/.config/nvim/lua/plugins"
 alias ofish="nvim ~/.config/fish/config.fish"
+alias ci3="cd ~/.config/i3"
 alias oi3="nvim ~/.config/i3/config"
+alias cnvim="cd ~/.config/nvim"
 alias onvim="nvim ~/.config/nvim/lua/plugins"
 
 # Enable syntax highlighting (default in Fish)
@@ -36,6 +40,7 @@ set -g fish_color_param cyan
 abbr -a ga "git add ."
 abbr -a gco "git checkout"
 abbr -a gc "git commit -m"
+abbr -a gf "git fetch"
 abbr -a gl "git pull"
 abbr -a gp "git push"
 
@@ -48,13 +53,27 @@ end
 function rauth
     auth;
     dotnet build -c Debug;
-    dotnet run $HOME/nexus/Nexus.Auth/Nexus.Auth/bin/Debug/net8.0/Nexus.Auth;
+    dotnet run ~/nexus/Nexus.Auth/Nexus.Auth/bin/Debug/net8.0/Nexus.Auth;
 end
 
 function rposts
     posts;
     dotnet build -c Debug;
-    dotnet run $HOME/nexus/Nexus.Posts/Nexus.Posts/bin/Debug/net8.0/Nexus.Posts;
+    dotnet run ~/nexus/Nexus.Posts/Nexus.Posts/bin/Debug/net8.0/Nexus.Posts;
+end
+
+function rserver
+    server;
+    cmake -S . -B .;
+    cmake --build build;
+    ~/tcp_chat/server/build/tcp_server;
+end
+
+function rclient
+    client;
+    cmake -S . -B .;
+    cmake --build build;
+    ~/tcp_chat/client/build/tcp_client;
 end
 
 # Key bindings (e.g., Ctrl+r for history search)
@@ -76,5 +95,5 @@ end
 set -Ux fish_user_paths $fish_user_paths /opt/nvim-linux64/bin
 
 # Dotnet root
-set -Ux fish_user_paths $fish_user_paths $HOME/.dotnet
-set -x DOTNET_ROOT $HOME/.dotnet
+set -Ux fish_user_paths $fish_user_paths ~/.dotnet
+set -x DOTNET_ROOT ~/.dotnet
