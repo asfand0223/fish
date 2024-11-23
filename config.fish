@@ -20,10 +20,10 @@ alias auth="cd ~/nexus/Nexus.Auth/Nexus.Auth"
 alias oauth="cd ~/nexus/Nexus.Auth/Nexus.Auth && nvim"
 alias posts="cd ~/nexus/Nexus.Posts/Nexus.Posts"
 alias oposts="cd ~/nexus/Nexus.Posts/Nexus.Posts && nvim"
-alias server="cd ~/tcp_chat/server"
-alias oserver="nvim ~/tcp_chat/server"
-alias client="cd ~/tcp_chat/client"
-alias oclient="nvim ~/tcp_chat/client"
+alias server="cd ~/tcp/server"
+alias oserver="nvim ~/tcp/server"
+alias client="cd ~/tcp/client"
+alias oclient="nvim ~/tcp/client"
 alias db="dotnet build -c Debug"
 alias ckitty="cd ~/.config/kitty"
 alias okitty="nvim ~/.config/kitty/kitty.conf"
@@ -68,14 +68,14 @@ function rserver
     server;
     cmake -S . -B .;
     cmake --build build;
-    ~/tcp_chat/server/build/tcp_server;
+    ~/tcp/server/build/server;
 end
 
 function rclient
     client;
     cmake -S . -B .;
     cmake --build build;
-    ~/tcp_chat/client/build/tcp_client;
+    ~/tcp/client/build/client;
 end
 
 # Key bindings (e.g., Ctrl+r for history search)
